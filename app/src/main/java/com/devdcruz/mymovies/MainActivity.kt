@@ -19,13 +19,8 @@ class MainActivity : AppCompatActivity() {
                 Movie("title 4", "https://loremflickr.com/320/240?lock=4"),
                 Movie("title 5", "https://loremflickr.com/320/240?lock=5"),
                 Movie("title 6", "https://loremflickr.com/320/240?lock=6")
-            ),
-            object : MovieClickedListener {
-                override fun onMovieClicked(movie: Movie) {
-                    Toast.makeText(this@MainActivity, movie.title, Toast.LENGTH_SHORT).show()
-                }
-
-            }
-        )
+            )
+        ) { movie ->
+            Toast.makeText(this@MainActivity, movie.title, Toast.LENGTH_SHORT).show() }
     }
 }
