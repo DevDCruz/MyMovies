@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.devdcruz.mymovies.databinding.ViewMovieItemBinding
+import com.devdcruz.mymovies.model.Movie
 
 class MoviesAdapter(
-    private val movies: List<Movie>,
+    var movies: List<Movie>,
     private val movieClickedListener: (Movie) -> Unit
 ) :
     RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
@@ -18,7 +19,7 @@ class MoviesAdapter(
             binding.tvItemMovie.text = movie.title
             Glide
                 .with(binding.root.context)
-                .load(movie.cover)
+                .load("https://image.tmdb.org/t/p/w500${movie.poster_path}")
                 .into(binding.ivItemMovie)
         }
     }

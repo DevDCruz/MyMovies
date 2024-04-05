@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.devdcruz.mymovies.databinding.ActivityMainBinding
 import com.devdcruz.mymovies.model.MovieDbClient
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
@@ -14,25 +18,15 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.recyclerMovie.adapter = MoviesAdapter(
-            listOf(
-                Movie("title 1", "https://loremflickr.com/320/240?lock=1"),
-                Movie("title 2", "https://loremflickr.com/320/240?lock=2"),
-                Movie("title 3", "https://loremflickr.com/320/240?lock=3"),
-                Movie("title 4", "https://loremflickr.com/320/240?lock=4"),
-                Movie("title 5", "https://loremflickr.com/320/240?lock=5"),
-                Movie("title 6", "https://loremflickr.com/320/240?lock=6")
-            )
-        ) { movie ->
+        val moviesAdapter = MoviesAdapter(emptyList()) { movie ->
             Toast.makeText(this@MainActivity, movie.title, Toast.LENGTH_SHORT).show()
         }
-
-        thread {
+        binding.recyclerMovie.adapter = moviesAdapter
+        lifecycleScope.launch {
             val apiKey = getString(R.string.api_key)
             val popularMovies = MovieDbClient.service.lisPopularMovies(apiKey)
-            val body = popularMovies.execute().body()
-            if (body != null)
-            Log.d("MainActivity","Movie count: ${body.results.size}")
+            moviesAdapter.movies = popularMovies.results
+            moviesAdapter.notifyDataSetChanged()
         }
     }
 }
