@@ -3,14 +3,22 @@ package com.devdcruz.mymovies
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.devdcruz.mymovies.databinding.ViewMovieItemBinding
 
-class MoviesAdapter(private val movies: List<Movie>) :
+interface MovieClickedListener{
+    fun onMovieClicked(movie: Movie)
+}
+class MoviesAdapter(private val movies: List<Movie>, private val movieClickedListener: MovieClickedListener) :
     RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     class ViewHolder(private val binding: ViewMovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
             binding.tvItemMovie.text = movie.title
+            Glide
+                .with(binding.root.context)
+                .load(movie.cover)
+                .into(binding.ivItemMovie)
         }
     }
 
@@ -24,6 +32,8 @@ class MoviesAdapter(private val movies: List<Movie>) :
     override fun getItemCount() = movies.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(movies[position])
+        val movie = movies[position]
+        holder.bind(movie)
+        holder.itemView.setOnClickListener { movieClickedListener.onMovieClicked(movie) }
     }
 }

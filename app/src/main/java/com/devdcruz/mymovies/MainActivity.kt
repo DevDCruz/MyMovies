@@ -2,6 +2,7 @@ package com.devdcruz.mymovies
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.devdcruz.mymovies.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -12,13 +13,19 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerMovie.adapter = MoviesAdapter(
             listOf(
-                Movie("title 1", "URL 1"),
-                Movie("title 2", "URL 2"),
-                Movie("title 3", "URL 3"),
-                Movie("title 4", "URL 4"),
-                Movie("title 5", "URL 5"),
-                Movie("title 6", "URL 6")
-            )
+                Movie("title 1", "https://loremflickr.com/320/240?lock=1"),
+                Movie("title 2", "https://loremflickr.com/320/240?lock=2"),
+                Movie("title 3", "https://loremflickr.com/320/240?lock=3"),
+                Movie("title 4", "https://loremflickr.com/320/240?lock=4"),
+                Movie("title 5", "https://loremflickr.com/320/240?lock=5"),
+                Movie("title 6", "https://loremflickr.com/320/240?lock=6")
+            ),
+            object : MovieClickedListener {
+                override fun onMovieClicked(movie: Movie) {
+                    Toast.makeText(this@MainActivity, movie.title, Toast.LENGTH_SHORT).show()
+                }
+
+            }
         )
     }
 }

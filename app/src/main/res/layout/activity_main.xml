@@ -11,9 +11,10 @@
         android:id="@+id/recycler_movie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"/>
+        app:spanCount="2"
+        tools:layout_editor_absoluteX="-204dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:listitem="@layout/view_movie_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
