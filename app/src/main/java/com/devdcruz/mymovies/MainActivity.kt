@@ -2,8 +2,11 @@ package com.devdcruz.mymovies
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.devdcruz.mymovies.databinding.ActivityMainBinding
+import com.devdcruz.mymovies.model.MovieDbClient
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +24,15 @@ class MainActivity : AppCompatActivity() {
                 Movie("title 6", "https://loremflickr.com/320/240?lock=6")
             )
         ) { movie ->
-            Toast.makeText(this@MainActivity, movie.title, Toast.LENGTH_SHORT).show() }
+            Toast.makeText(this@MainActivity, movie.title, Toast.LENGTH_SHORT).show()
+        }
+
+        thread {
+            val apiKey = getString(R.string.api_key)
+            val popularMovies = MovieDbClient.service.lisPopularMovies(apiKey)
+            val body = popularMovies.execute().body()
+            if (body != null)
+            Log.d("MainActivity","Movie count: ${body.results.size}")
+        }
     }
 }
