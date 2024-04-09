@@ -6,9 +6,9 @@ import androidx.appcompat.widget.AppCompatImageView
 import com.devdcruz.mymovies.R
 
 class AspectRatioImageView @JvmOverloads constructor(
-    context : Context,
-    attrs : AttributeSet? = null, defStyleAttr : Int = 0
-) : AppCompatImageView (context, attrs, defStyleAttr) {
+    context: Context,
+    attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : AppCompatImageView(context, attrs, defStyleAttr) {
     private var ratio = 1f
 
     init {
@@ -19,6 +19,7 @@ class AspectRatioImageView @JvmOverloads constructor(
             a.recycle()
         }
     }
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         var width = measuredWidth
