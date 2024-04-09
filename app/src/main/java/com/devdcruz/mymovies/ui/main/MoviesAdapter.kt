@@ -1,4 +1,4 @@
-package com.devdcruz.mymovies
+package com.devdcruz.mymovies.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package com.devdcruz.mymovies.ui
+package com.devdcruz.mymovies.ui.common
 
 import android.content.Context
 import android.util.AttributeSet

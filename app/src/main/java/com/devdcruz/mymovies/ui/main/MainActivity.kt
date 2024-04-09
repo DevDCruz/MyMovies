@@ -1,19 +1,15 @@
-package com.devdcruz.mymovies
+package com.devdcruz.mymovies.ui.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import com.devdcruz.mymovies.ui.detail.DetailActivity
+import com.devdcruz.mymovies.R
 import com.devdcruz.mymovies.databinding.ActivityMainBinding
 import com.devdcruz.mymovies.model.Movie
 import com.devdcruz.mymovies.model.MovieDbClient
-import com.devdcruz.mymovies.ui.AspectRatioImageView
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

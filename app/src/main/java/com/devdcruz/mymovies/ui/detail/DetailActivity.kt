@@ -1,4 +1,4 @@
-package com.devdcruz.mymovies
+package com.devdcruz.mymovies.ui.detail
 
 import android.content.Intent
 import android.os.Build.VERSION.SDK_INT
