@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.devdcruz.mymovies.databinding.ActivityMainBinding
 import com.devdcruz.mymovies.model.Movie
 import com.devdcruz.mymovies.model.MovieDbClient
+import com.devdcruz.mymovies.ui.AspectRatioImageView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
             moviesAdapter.movies = popularMovies.results
             moviesAdapter.notifyDataSetChanged()
         }
+
     }
 
     private fun navigateTo(movie: Movie) {
